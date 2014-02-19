@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 
 namespace Galleriet
 {
@@ -12,7 +13,14 @@ namespace Galleriet
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            var jQuery = new ScriptResourceDefinition
+            {
+                Path = "~/Scripts/jquery-2.1.0.min.js",
+                DebugPath = "~/Scripts/jquery-2.1.0.js",
+                CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-2.1.0.min.js",
+                CdnDebugPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-2.1.0.js"
+            };
+            ScriptManager.ScriptResourceMapping.AddDefinition("jquery", jQuery);
         }
 
         protected void Session_Start(object sender, EventArgs e)

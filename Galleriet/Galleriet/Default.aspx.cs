@@ -13,5 +13,13 @@ namespace Galleriet
         {
 
         }
+
+        protected void UploadImage_Click(object sender, EventArgs e)
+        {
+            if (IsValid)
+            {
+
+            }
+        }
     }
 }
