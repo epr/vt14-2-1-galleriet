@@ -44,12 +44,12 @@ namespace Galleriet
                 {
                     try
                     {
-                        Gallery.SaveImage(ImageUploader.FileContent, ImageUploader.FileName);
-                        Response.Redirect("?image=" + ImageUploader.FileName + "&uploaded=true");
+                        var imageName = Gallery.SaveImage(ImageUploader.FileContent, ImageUploader.FileName);
+                        Response.Redirect("Default.aspx?image=" + imageName + "&uploaded=true");
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        Response.Redirect("?image=" + ImageUploader.FileName + "&uploaded=false");
+                        Response.Redirect("Default.aspx?uploaded=false");
                     }
                 }
 
