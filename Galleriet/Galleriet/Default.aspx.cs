@@ -24,7 +24,8 @@ namespace Galleriet
             var image = Request.QueryString["image"];
             if (image != null)
             {
-                //show image
+                Original.ImageUrl = string.Format("~/Images/{0}", image);
+                Original.Visible = true;
             }
             if (Request.QueryString["uploaded"] == "true")
             {
@@ -45,15 +46,20 @@ namespace Galleriet
                     try
                     {
                         var imageName = Gallery.SaveImage(ImageUploader.FileContent, ImageUploader.FileName);
-                        Response.Redirect("Default.aspx?image=" + imageName + "&uploaded=true");
+                        Response.Redirect("Default.aspx?image=" + imageName + "&uploaded=true", false);
                     }
                     catch (Exception ex)
                     {
-                        Response.Redirect("Default.aspx?uploaded=false");
+                        Response.Redirect("Default.aspx?image=" + ImageUploader.FileName + "&uploaded=false", false);
                     }
                 }
 
             }
+        }
+
+        public IEnumerable<string> ImageRepeater_GetData()
+        {
+            return Gallery.GetImageNames();
         }
     }
 }

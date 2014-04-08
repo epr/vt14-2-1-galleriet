@@ -8,6 +8,18 @@
 <body>
     <form id="ImageUploaderForm" runat="server">
         <div>
+            <asp:Image ID="Original" runat="server" Visible="false" />
+        </div>
+        <div>
+            <asp:Repeater ID="ImageRepeater" runat="server" ItemType="System.String" SelectMethod="ImageRepeater_GetData">
+                <ItemTemplate>
+                    <asp:HyperLink runat="server" NavigateUrl='<%#: "Default.aspx?image=" + Item.Substring(0) %>'>
+                        <asp:Image runat="server" ImageUrl='<%#: "~/Images/Thumbs/" + Item %>' />
+                    </asp:HyperLink>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <div>
             <asp:FileUpload ID="ImageUploader" runat="server" />
             <asp:RequiredFieldValidator ControlToValidate="ImageUploader" 
                 Display="Dynamic" ID="RequiredFieldValidator1" runat="server" 
