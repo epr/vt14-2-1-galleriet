@@ -16,24 +16,25 @@ namespace Galleriet
         {
             get
             {
-                return _gallery ?? (_gallery = new Gallery());
+                return _gallery ?? (_gallery = new Gallery()); //lazy
             }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
             var image = Request.QueryString["image"];
-            if (image != null)
+            if (image != null) //om det finns en bild i länken, visa den i originalformat
             {
                 Original.ImageUrl = string.Format("~/Images/{0}", image);
                 Original.Visible = true;
             }
-            if (Request.QueryString["uploaded"] == "true")
+            if (Request.QueryString["uploaded"] == "true") //om uppladdningen lyckades, visa meddelande
             {
-                //show success message
+                SuccessMessage.Text = string.Format("Bilden '{0}' har sparats.", image);
+                SuccessMessage.Visible = true;
             }
-            else if (Request.QueryString["uploaded"] == "false")
+            else if (Request.QueryString["uploaded"] == "false") //om uppladdningen misslyckades, visa felmeddelande
             {
-                //show fail message
+                CustomValidator1.IsValid = false;
             }
         }
 
@@ -45,12 +46,12 @@ namespace Galleriet
                 {
                     try
                     {
-                        var imageName = Gallery.SaveImage(ImageUploader.FileContent, ImageUploader.FileName);
-                        Response.Redirect("Default.aspx?image=" + imageName + "&uploaded=true", false);
+                        var imageName = Gallery.SaveImage(ImageUploader.FileContent, ImageUploader.FileName); //spara bilden
+                        Response.Redirect("Default.aspx?image=" + imageName + "&uploaded=true", false); //lägg bildnamnet i länken
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        Response.Redirect("Default.aspx?image=" + ImageUploader.FileName + "&uploaded=false", false);
+                        Response.Redirect("Default.aspx?uploaded=false", false);
                     }
                 }
 
