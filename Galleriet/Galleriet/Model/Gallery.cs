@@ -49,15 +49,16 @@ namespace Galleriet.Model
             if (IsValidImage(image))
             {
                 fileName = SanitizePath.Replace(fileName, "");
-                var i = 0;
-                while (ImageExists(fileName))
+                var i = 2;
+                var copyName = fileName;
+                while (ImageExists(copyName))
                 {
-                    fileName = string.Format("{0}({1}){2}", Path.GetFileNameWithoutExtension(fileName), i++, Path.GetExtension(fileName));
+                    copyName = string.Format("{0}({1}){2}", Path.GetFileNameWithoutExtension(fileName), i++, Path.GetExtension(fileName));
                 }
                 var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero);
-                image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
-                thumbnail.Save(Path.Combine(PhysicalUploadedImagesPath, "Thumbs", fileName));
-                return fileName;
+                image.Save(Path.Combine(PhysicalUploadedImagesPath, copyName));
+                thumbnail.Save(Path.Combine(PhysicalUploadedImagesPath, "Thumbs", copyName));
+                return copyName;
             }
             throw new ArgumentException("Fel MIME-typ.");
         }
