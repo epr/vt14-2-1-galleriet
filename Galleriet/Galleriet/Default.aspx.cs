@@ -31,6 +31,7 @@ namespace Galleriet
             {
                 SuccessMessage.Text = string.Format("Bilden '{0}' har sparats.", image);
                 SuccessMessage.Visible = true;
+                CloseMessage.Visible = true;
             }
             else if (Request.QueryString["uploaded"] == "false") //om uppladdningen misslyckades, visa felmeddelande
             {

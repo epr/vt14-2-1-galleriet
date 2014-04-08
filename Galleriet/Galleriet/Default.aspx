@@ -4,10 +4,12 @@
 <html>
 <head runat="server">
     <title>Galleriet - Eddy Proca</title>
+    <script src="Scripts/gallery.js"></script>
 </head>
 <body>
     <form id="ImageUploaderForm" runat="server">
         <asp:Label ID="SuccessMessage" runat="server" Visible="false"></asp:Label>
+        <button ID="CloseMessage" runat="server" visible="false">✖</button>
         <div>
             <asp:Image ID="Original" runat="server" Visible="false" />
         </div>
