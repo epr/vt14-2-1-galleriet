@@ -4,12 +4,15 @@
 <html>
 <head runat="server">
     <title>Galleriet - Eddy Proca</title>
-    <script src="Scripts/gallery.js"></script>
 </head>
 <body>
     <form id="ImageUploaderForm" runat="server">
-        <asp:Label ID="SuccessMessage" runat="server" Visible="false"></asp:Label>
-        <button ID="CloseMessage" runat="server" visible="false">✖</button>
+        <asp:PlaceHolder ID="MessageHolder" runat="server" Visible="false">
+            <div ID="MessageBox">
+                <asp:Label ID="SuccessMessage" runat="server"></asp:Label>
+                <button ID="CloseMessage">✖</button>
+            </div>
+        </asp:PlaceHolder>
         <div>
             <asp:Image ID="Original" runat="server" Visible="false" />
         </div>
@@ -37,5 +40,6 @@
             <asp:Button ID="UploadImage" runat="server" Text="Ladda upp" OnClick="UploadImage_Click" />
         </div>
     </form>
+    <script src="Scripts/gallery.js"></script>
 </body>
 </html>

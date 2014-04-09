@@ -30,8 +30,7 @@ namespace Galleriet
             if (Request.QueryString["uploaded"] == "true") //om uppladdningen lyckades, visa meddelande
             {
                 SuccessMessage.Text = string.Format("Bilden '{0}' har sparats.", image);
-                SuccessMessage.Visible = true;
-                CloseMessage.Visible = true;
+                MessageHolder.Visible = true;
             }
             else if (Request.QueryString["uploaded"] == "false") //om uppladdningen misslyckades, visa felmeddelande
             {
