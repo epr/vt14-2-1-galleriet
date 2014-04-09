@@ -16,7 +16,7 @@ namespace Galleriet
         {
             get
             {
-                return _gallery ?? (_gallery = new Gallery()); //lazy
+                return _gallery ?? (_gallery = new Gallery()); //lazy initialisation av galleriet
             }
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +26,14 @@ namespace Galleriet
             {
                 Original.ImageUrl = string.Format("~/Images/{0}", image);
                 Original.Visible = true;
+                /*var thumbs = ImageRepeater.Items;
+                foreach (HyperLink l in thumbs)
+                {
+                    if (l.NavigateUrl.ToString().Contains(image))
+                    {
+                        l.Attributes.Add("class", "current");
+                    }
+                }*/
             }
             if (Request.QueryString["uploaded"] == "true") //om uppladdningen lyckades, visa meddelande
             {
@@ -40,9 +48,9 @@ namespace Galleriet
 
         protected void UploadImage_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (IsValid) //om allt är korrekt
             {
-                if (ImageUploader.HasFile)
+                if (ImageUploader.HasFile) //och om det finns en vald bild
                 {
                     try
                     {
@@ -51,7 +59,7 @@ namespace Galleriet
                     }
                     catch
                     {
-                        Response.Redirect("Default.aspx?uploaded=false", false);
+                        Response.Redirect("Default.aspx?uploaded=false", false); //om uppladdningen misslyckades
                     }
                 }
 
@@ -60,7 +68,7 @@ namespace Galleriet
 
         public IEnumerable<string> ImageRepeater_GetData()
         {
-            return Gallery.GetImageNames();
+            return Gallery.GetImageNames(); //hämta bildnamn till repeatern
         }
     }
 }

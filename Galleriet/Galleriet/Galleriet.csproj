@@ -67,6 +67,7 @@
     <Content Include="Scripts\gallery.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Style\screen.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>

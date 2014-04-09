@@ -1,0 +1,30 @@
+﻿#MessageBox {
+    border: 2px solid #083;
+    background: #6d3;
+    color: #042;
+    width: 400px;
+    padding: 10px;
+    position: relative;
+}
+#MessageBox button {
+    background: #830;
+    color: white;
+    border: 0;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 1.5em;
+    padding: 0;
+}
+#MessageBox button:hover {
+    background: #c00;
+}
+#ValidationSummary {
+    border: 2px solid #830;
+    background: #d33;
+    color: #402;
+    width: 400px;
+    padding: 10px;
+    position: relative;
+    margin: 10px 0;
+}
