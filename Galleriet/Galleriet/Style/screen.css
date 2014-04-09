@@ -28,3 +28,11 @@
     position: relative;
     margin: 10px 0;
 }
+a img {
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.selected img, a:hover img {
+    border-color: #ae9;
+    background: #ae9;
+}

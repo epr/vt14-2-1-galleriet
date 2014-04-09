@@ -26,14 +26,6 @@ namespace Galleriet
             {
                 Original.ImageUrl = string.Format("~/Images/{0}", image);
                 Original.Visible = true;
-                /*var thumbs = ImageRepeater.Items;
-                foreach (HyperLink l in thumbs)
-                {
-                    if (l.NavigateUrl.ToString().Contains(image))
-                    {
-                        l.Attributes.Add("class", "current");
-                    }
-                }*/
             }
             if (Request.QueryString["uploaded"] == "true") //om uppladdningen lyckades, visa meddelande
             {
@@ -69,6 +61,19 @@ namespace Galleriet
         public IEnumerable<string> ImageRepeater_GetData()
         {
             return Gallery.GetImageNames(); //hämta bildnamn till repeatern
+        }
+
+        protected void ImageRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e) //markera den valda tumnagelbilden
+        {
+            var image = Request.QueryString["image"];
+            if (image != null)
+            {
+                if (e.Item.DataItem.ToString() == image)
+                {
+                    var l = (HyperLink)e.Item.FindControl("ThumbLink");
+                    l.Attributes.Add("class", "selected");
+                }
+            }
         }
     }
 }

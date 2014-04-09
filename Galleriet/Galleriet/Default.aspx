@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Style/screen.css">
 </head>
 <body>
+    <h1>Galleriet</h1>
     <form id="ImageUploaderForm" runat="server">
         <%--Meddelande om lyckad uppladdning--%>
         <asp:PlaceHolder ID="MessageHolder" runat="server" Visible="false">
@@ -21,15 +22,16 @@
         </div>
         <%--Tumnagelbilder--%>
         <div>
-            <asp:Repeater ID="ImageRepeater" runat="server" ItemType="System.String" SelectMethod="ImageRepeater_GetData">
+            <asp:Repeater ID="ImageRepeater" runat="server" ItemType="System.String" SelectMethod="ImageRepeater_GetData" OnItemDataBound="ImageRepeater_ItemDataBound">
                 <ItemTemplate>
-                    <asp:HyperLink runat="server" NavigateUrl='<%#: "Default.aspx?image=" + Item %>'>
+                    <asp:HyperLink ID="ThumbLink" runat="server" NavigateUrl='<%#: "Default.aspx?image=" + Item %>'>
                         <asp:Image runat="server" ImageUrl='<%#: "~/Images/Thumbs/" + Item %>' />
                     </asp:HyperLink>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
         <div>
+            <p>Välj en bild nedan att ladda upp.</p>
             <%--Felmeddelanden--%>
             <asp:ValidationSummary ID="ValidationSummary" runat="server" HeaderText="Fel inträffade! Korigera felet och försök igen." />
             <%--Filuppladning--%>
